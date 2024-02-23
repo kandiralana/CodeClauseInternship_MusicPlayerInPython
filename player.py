@@ -5,6 +5,8 @@ from pygame import mixer
 import os
 from PIL import Image, ImageTk, ImageSequence
 
+button_y = 400
+
 root = Tk()
 root.title("SIMPLE MUSIC PLAYER")
 root.geometry("485x700+290+10")
@@ -32,7 +34,7 @@ def PlayMusic():
 
 # icon
 lower_frame = Frame(root, bg="#FFFFFF", width=485, height=180)
-lower_frame.place(x=0, y=400)
+lower_frame.place(x=0, y=375)
 
 image_icon = PhotoImage(file="icons/player_logo.png")
 root.iconphoto(False, image_icon)
@@ -48,7 +50,7 @@ def update(ind):
     if ind == len(frames):
         ind = 0
     label.configure(image=frame)
-    root.after(40, update, ind)
+    root.after(120, update, ind)
 
 label = Label(root)
 label.place(x=0, y=0)
@@ -56,32 +58,32 @@ root.after(0, update, 0)
 
 ButtonPlay = PhotoImage(file="icons/play_button.png")
 Button(root, image=ButtonPlay, bg="#FFFFFF", bd=0, height=60, width=60,
-       command=PlayMusic, cursor="hand2").place(x=215, y=487)
+       command=PlayMusic, cursor="hand2").place(x=215, y=button_y)
 
 ButtonStop = PhotoImage(file="icons/stop_button.png")
 Button(root, image=ButtonStop, bg="#FFFFFF", bd=0, height=60, width=60,
-       command=mixer.music.stop, cursor="hand2").place(x=130, y=487)
+       command=mixer.music.stop, cursor="hand2").place(x=130, y=button_y)
 
 ButtonPause = PhotoImage(file="icons/pause_button.png")
 Button(root, image=ButtonPause, bg="#FFFFFF", bd=0, height=60, width=60,
-       command=mixer.music.pause, cursor="hand2").place(x=300, y=487)
+       command=mixer.music.pause, cursor="hand2").place(x=300, y=button_y)
 
 Volume = PhotoImage(file="icons/speaker_button.png")
-panel = Label(root, image=Volume).place(x=20, y=487)
+panel = Label(root, image=Volume).place(x=20, y=button_y)
 
 # Label
 Menu = PhotoImage(file="icons/menu.png")
 Label(root, image=Menu).place(x=0, y=580, width=485, height=120)
 
 Frame_Music = Frame(root, bd=2, relief=RIDGE)
-Frame_Music.place(x=0, y=584, width=485, height=100)
+Frame_Music.place(x=0, y=button_y+130, width=485, height=150)
 # Frame_Music.place(x=0, y=585, width=485, height=100)
 
 Button(root, text="Browse Music", width=50, height=2, font=("calibri", 12, "bold"), fg="#333333", bg="#FFFFFF",
-       command=AddMusic, cursor="hand2").place(x=0, y=550)
+       command=AddMusic, cursor="hand2").place(x=0, y=button_y+85)
 
 Scroll = Scrollbar(Frame_Music)
-Playlist = Listbox(Frame_Music, width=100, font=("calibri", 10), bg="#333333", fg="grey",
+Playlist = Listbox(Frame_Music, width=100, font=("calibri", 12), bg="#333333", fg="grey",
                    selectbackground="lightblue", cursor="hand2", bd=0, yscrollcommand=Scroll.set)
 
 Scroll.config(command=Playlist.yview)
