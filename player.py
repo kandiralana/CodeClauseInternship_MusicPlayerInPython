@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter import filedialog
 from pygame import mixer
 import os
+from PIL import Image, ImageTk, ImageSequence
 
 root = Tk()
 root.title("SIMPLE MUSIC PLAYER")
@@ -10,7 +11,6 @@ root.geometry("485x700+290+10")
 root.configure(background='#333333')
 root.resizable(False, False)
 mixer.init()
-
 
 # Create a function to open a file
 def AddMusic():
@@ -23,14 +23,12 @@ def AddMusic():
             if song.endswith(".mp3"):
                 Playlist.insert(END, song)
 
-
-# Create a function to play a music
+# Create a function to play music
 def PlayMusic():
     Music_Name = Playlist.get(ACTIVE)
-    print(Music_Name(ACTIVE))
+    print(Music_Name[0:-4])
     mixer.music.load(Playlist.get(ACTIVE))
     mixer.music.play()
-
 
 # icon
 lower_frame = Frame(root, bg="#FFFFFF", width=485, height=180)
@@ -39,18 +37,18 @@ lower_frame.place(x=0, y=400)
 image_icon = PhotoImage(file="icons/player_logo.png")
 root.iconphoto(False, image_icon)
 
-frameCNT = 30
-frames = [PhotoImage(file="icons/turn-around-anime.gif", format='gif - index %i' % i) for i in range(frameCNT)]
-
+# Load animated GIF using Pillow
+gif_path = "icons/turn-around-anime.gif"
+gif = Image.open(gif_path)
+frames = [ImageTk.PhotoImage(img) for img in ImageSequence.Iterator(gif)]
 
 def update(ind):
     frame = frames[ind]
     ind += 1
-    if ind == frameCNT:
+    if ind == len(frames):
         ind = 0
     label.configure(image=frame)
     root.after(40, update, ind)
-
 
 label = Label(root)
 label.place(x=0, y=0)
