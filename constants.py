@@ -1,0 +1,9 @@
+PLAYER_WIDTH = 500
+PLAYER_HEIGHT = 400
+APP_LOGO = "icons/player_logo.png"
+PLAY_BUTTON = "icons/play_button.png"
+PAUSE_BUTTON = "icons/pause_button.png"
+STOP_BUTTON = "icons/stop_button.png"
+PREVIOUS_SONG_BUTTON = "icons/previous_button.png"
+NEXT_SONG_BUTTON = "icons/next_button.png"
+GIF = "icons/turn-around-anime.gif"

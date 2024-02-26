@@ -1,19 +1,11 @@
 from tkinter import *
 from tkinter import filedialog
-from PIL import Image, ImageTk, ImageSequence, ImageDraw
+from PIL import Image, ImageTk, ImageSequence
 from pygame import mixer
 import os
 from screeninfo import get_monitors
+from constants import *
 
-PLAYER_WIDTH = 500
-PLAYER_HEIGHT = 400
-APP_LOGO = "icons/player_logo.png"
-PLAY_BUTTON = "icons/play_button.png"
-PAUSE_BUTTON = "icons/pause_button.png"
-STOP_BUTTON = "icons/stop_button.png"
-PREVIOUS_SONG_BUTTON = "icons/previous_button.png"
-NEXT_SONG_BUTTON = "icons/next_button.png"
-GIF = "icons/turn-around-anime.gif"
 
 
 def get_center(p_width=500, p_height=400):
@@ -119,7 +111,7 @@ class SimpleMusicPlayer:
         frame_height = int(self.player_height / 5 * 2)
         frame_weight = self.player_width
 
-        control_frame = Frame(self.root, bg="white", width=frame_weight, height=frame_height)
+        control_frame = Frame(self.root, bg="#F3F4F4", width=frame_weight, height=frame_height)
         control_frame.place(x=start_point_x, y=start_point_y)
         return control_frame, frame_height
 
@@ -250,6 +242,4 @@ class SimpleMusicPlayer:
         self.root.mainloop()
 
 
-if __name__ == '__main__':
-    simple_player = SimpleMusicPlayer()
-    simple_player.run()
+
